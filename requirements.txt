@@ -1,0 +1,7 @@
+langchain
+openai
+tiktoken
+qdrant-client
+langgraph
+streamlit
+streamlit-chat
