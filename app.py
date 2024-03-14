@@ -59,12 +59,12 @@ Question: {question}
 
  
 prompt = ChatPromptTemplate.from_template(template)
-model = ChatOpenAI()
+llm = ChatOpenAI(temperature=0,api_key=OPENAI_API_KEY)
 
 chain = (
     {"context": retriever, "question": RunnablePassthrough()}
     | prompt
-    | model
+    | llm
     | StrOutputParser()
 )
 
