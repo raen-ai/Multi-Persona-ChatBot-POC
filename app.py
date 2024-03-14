@@ -1,12 +1,9 @@
-import streamlit as st
 from dotenv import load_dotenv
 import streamlit as st
 from langchain_community.vectorstores import Qdrant # used for creating the Qdrant Vector Object
 from langchain_community.embeddings.openai import OpenAIEmbeddings # used for embeddings 
 from langchain.text_splitter import CharacterTextSplitter
 from qdrant_client.http import models
-from langchain_core.runnables import RunnablePassthrough , RunnableParallel
-from langchain.schema.runnable import RunnablePassthrough
 from langchain.llms import OpenAI
 from qdrant_client import QdrantClient
 from langchain.prompts import ChatPromptTemplate
@@ -16,7 +13,6 @@ from langchain.chains import RetrievalQA
 from langchain.schema import retriever
 import qdrant_client
 import os
-
 
 
 
@@ -47,7 +43,7 @@ vector_store = get_vector_store()
 
 retriever = vector_store.as_retriever()
 
-template = """"You are an strategizing AI agent for industrial projects 
+template = """You are an strategizing AI agent for industrial projects 
 you provide insights which are categorized based on the personas provided to you. 
 Your insights should reflect proper industry experience of the persona
  Please include the personas employed in the team composition.
