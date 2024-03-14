@@ -78,7 +78,7 @@ def main():
  
     # create chain 
     chain = RetrievalQA.from_chain_type(
-        llm=OpenAI(),
+        llm=OpenAI(temperature=0,api_key=OPENAI_API_KEY),
         chain_type="stuff",
         retriever=vector_store.as_retriever()
     )
