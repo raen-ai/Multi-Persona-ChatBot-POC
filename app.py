@@ -18,10 +18,9 @@ import qdrant_client
 import os
 
 
-load_dotenv()  # take environment variables from .env.
+
 
 OPENAI_API_KEY=st.secrets["OPENAI_API_KEY"]
-llm = ChatOpenAI(temperature=0,api_key=OPENAI_API_KEY)
 
 def get_vector_store():
     
@@ -57,16 +56,11 @@ Your insights should reflect proper industry experience of the persona
 Question: {question}
 """
 
- 
 prompt = ChatPromptTemplate.from_template(template)
 llm = ChatOpenAI(temperature=0,api_key=OPENAI_API_KEY)
 
-chain = (
-    {"context": retriever, "question": RunnablePassthrough()}
-    | prompt
-    | llm
-    | StrOutputParser()
-)
+def get_prompt(context: str, question: str) -> str:
+    return template.format(context=context, question=question)
 
 
 def main():
